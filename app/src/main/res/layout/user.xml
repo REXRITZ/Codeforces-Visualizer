@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dimen_12"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/profile_photo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="rexritz"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/full_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name"
+        android:layout_marginTop="@dimen/dimen_6"
+        android:layout_toStartOf="@id/profile_photo"
+        android:layout_alignParentStart="true"
+        android:text="Ritesh Bhadane"/>
+
+    <TextView
+        android:id="@+id/user_rank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/profile_photo"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/dimen_6"
+        android:layout_below="@id/full_name"
+        android:text="Candidate Master"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_photo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@mipmap/ic_launcher"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#B8B8B8"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/user_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rating: 2456"
+        android:layout_below="@id/user_rank"
+        android:layout_marginTop="@dimen/dimen_6"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/user_rating_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_rating"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        app:trackThickness="8dp"
+        app:trackCornerRadius="8dp"
+        android:layout_marginTop="@dimen/dimen_6"
+        android:indeterminate="false"
+        android:progress="70"/>
+</RelativeLayout>

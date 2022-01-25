@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingHorizontal="@dimen/dimen_12"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/contest_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Codeforces Round 720"
+        android:textSize="18sp"
+        android:singleLine="true"
+        app:layout_constraintEnd_toStartOf="@+id/contest_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/contest_type"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/contest_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/contest_rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Rated: Div 2"
+        app:layout_constraintEnd_toStartOf="@+id/contest_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contest_name" />
+
+    <TextView
+        android:id="@+id/contest_length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Length: 2 hrs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contest_rating" />
+
+    <TextView
+        android:id="@+id/contest_start_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start time: 22 Sunday 20:05:00 hrs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contest_length" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
