@@ -40,9 +40,6 @@
         android:id="@+id/profile_photo"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@mipmap/ic_launcher"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#B8B8B8"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"/>
 

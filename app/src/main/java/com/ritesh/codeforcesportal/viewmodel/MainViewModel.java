@@ -9,7 +9,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ritesh.codeforcesportal.model.Contest;
+import com.ritesh.codeforcesportal.model.User;
 import com.ritesh.codeforcesportal.repository.ContestRepository;
+import com.ritesh.codeforcesportal.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +20,15 @@ import java.util.Objects;
 public class MainViewModel extends AndroidViewModel {
 
     private final ContestRepository contestRepository;
+    private final UserRepository userRepository;
     private LiveData<List<Contest>> contestList;
+    private MutableLiveData<List<User>> user = new MutableLiveData<>();
     private final MutableLiveData<List<Contest>> upComingContests = new MutableLiveData<>();
     private final MutableLiveData<Boolean> contestProgressObservable = new MutableLiveData<>();
     public MainViewModel(@NonNull Application application) {
         super(application);
         contestRepository = new ContestRepository();
+        userRepository = new UserRepository();
     }
 
     public void init() {
@@ -35,7 +40,14 @@ public class MainViewModel extends AndroidViewModel {
                 contestList = contestRepository.getContestDetails();
                 loadContestData();
             }
-        },3000);
+        },2000);
+        userRepository.fetchUserProfile("REXRITZ");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                user.postValue(userRepository.getUsersProfile().getValue());
+            }
+        },2000);
     }
 
     private void loadContestData() {
@@ -60,6 +72,10 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<Contest>> getUpComingContests() {
         return upComingContests;
+    }
+
+    public LiveData<List<User>> getUsersProfile() {
+        return user;
     }
 
 }

@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_user_stats.xml" value="0.2" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/user.xml" value="0.22" />
         <entry key="..\:/Users/Me/Desktop/CodeforcesPortal/app/src/main/res/drawable/ciruclar_image.xml" value="0.821875" />
         <entry key="..\:/Users/Me/Desktop/CodeforcesPortal/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Me/Desktop/CodeforcesPortal/app/src/main/res/layout/contest_list_item.xml" value="0.25" />
