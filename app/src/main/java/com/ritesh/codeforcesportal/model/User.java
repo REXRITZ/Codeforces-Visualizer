@@ -1,6 +1,9 @@
 package com.ritesh.codeforcesportal.model;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class User implements Parcelable {
     private String handle;
     private String email;
     private String vkId;
@@ -21,6 +24,40 @@ public class User {
     private String avatar;
     private String titlePhoto;
 
+
+    protected User(Parcel in) {
+        handle = in.readString();
+        email = in.readString();
+        vkId = in.readString();
+        openId = in.readString();
+        firstName = in.readString();
+        lastName = in.readString();
+        country = in.readString();
+        city = in.readString();
+        organization = in.readString();
+        contribution = in.readInt();
+        rank = in.readString();
+        rating = in.readInt();
+        maxRank = in.readString();
+        maxRating = in.readInt();
+        lastOnlineTimeSeconds = in.readInt();
+        registrationTimeSeconds = in.readInt();
+        friendOfCount = in.readInt();
+        avatar = in.readString();
+        titlePhoto = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getHandle() {
         return handle;
@@ -98,28 +135,32 @@ public class User {
         return titlePhoto;
     }
 
+
     @Override
-    public String toString() {
-        return "User{" +
-                "handle='" + handle + '\'' +
-                ", email='" + email + '\'' +
-                ", vkId='" + vkId + '\'' +
-                ", openId='" + openId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", country='" + country + '\'' +
-                ", city='" + city + '\'' +
-                ", organization='" + organization + '\'' +
-                ", contribution=" + contribution +
-                ", rank='" + rank + '\'' +
-                ", rating=" + rating +
-                ", maxRank='" + maxRank + '\'' +
-                ", maxRating=" + maxRating +
-                ", lastOnlineTimeSeconds=" + lastOnlineTimeSeconds +
-                ", registrationTimeSeconds=" + registrationTimeSeconds +
-                ", friendOfCount=" + friendOfCount +
-                ", avatar='" + avatar + '\'' +
-                ", titlePhoto='" + titlePhoto + '\'' +
-                '}';
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(handle);
+        parcel.writeString(email);
+        parcel.writeString(vkId);
+        parcel.writeString(openId);
+        parcel.writeString(firstName);
+        parcel.writeString(lastName);
+        parcel.writeString(country);
+        parcel.writeString(city);
+        parcel.writeString(organization);
+        parcel.writeInt(contribution);
+        parcel.writeString(rank);
+        parcel.writeInt(rating);
+        parcel.writeString(maxRank);
+        parcel.writeInt(maxRating);
+        parcel.writeInt(lastOnlineTimeSeconds);
+        parcel.writeInt(registrationTimeSeconds);
+        parcel.writeInt(friendOfCount);
+        parcel.writeString(avatar);
+        parcel.writeString(titlePhoto);
     }
 }

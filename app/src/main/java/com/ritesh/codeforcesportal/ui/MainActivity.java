@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ContestAdapter adapter;
     private TextView userName, fullName, userRank, userRating;
     private CircleImageView profilePic;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getUsersProfile().observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> userList) {
-                if(userList != null)
-                    displayUserData(userList.get(0));
+                if(userList != null) {
+                    user = userList.get(0);
+                    displayUserData(user);
+                }
             }
         });
     }
@@ -81,6 +85,17 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ContestAdapter(MainActivity.this,true);
         recyclerView.setAdapter(adapter);
+
+
+        findViewById(R.id.btn_more_user).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,UserStatsActivity.class);
+                intent.putExtra("userProfile",user);
+                startActivity(intent);
+//                startActivity(new Intent(MainActivity.this,UserStatsActivity.class));
+            }
+        });
     }
     public void displayUserData(User user) {
         Glide.with(this)

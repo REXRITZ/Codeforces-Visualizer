@@ -42,6 +42,10 @@ public class Problem{
 		return tags;
 	}
 
+	public String getProblemsetName() {
+		return problemsetName;
+	}
+
 	@Override
  	public String toString(){
 		return 

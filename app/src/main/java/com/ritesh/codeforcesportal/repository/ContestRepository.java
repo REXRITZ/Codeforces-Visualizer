@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.ritesh.codeforcesportal.model.Contest;
 import com.ritesh.codeforcesportal.model.ContestResponse;
 import com.ritesh.codeforcesportal.service.ApiInterface;
-import com.ritesh.codeforcesportal.service.RetrofitService;
+import com.ritesh.codeforcesportal.service.RetrofitClient;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class ContestRepository {
     private static ApiInterface apiInterface;
     private final MutableLiveData<List<Contest>> contestList;
     public ContestRepository() {
-        apiInterface = RetrofitService.getApiInterface();
+        apiInterface = RetrofitClient.getApiInterface();
         contestList = new MutableLiveData<>();
     }
 

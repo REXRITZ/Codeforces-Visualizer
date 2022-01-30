@@ -3,11 +3,10 @@ package com.ritesh.codeforcesportal.repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.ritesh.codeforcesportal.model.ContestResponse;
 import com.ritesh.codeforcesportal.model.User;
 import com.ritesh.codeforcesportal.model.UserResponse;
 import com.ritesh.codeforcesportal.service.ApiInterface;
-import com.ritesh.codeforcesportal.service.RetrofitService;
+import com.ritesh.codeforcesportal.service.RetrofitClient;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class UserRepository {
     private MutableLiveData<List<User>> usersList;
 
     public UserRepository() {
-        apiInterface = RetrofitService.getApiInterface();
+        apiInterface = RetrofitClient.getApiInterface();
         usersList = new MutableLiveData<>();
     }
 

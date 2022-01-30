@@ -3,7 +3,7 @@ package com.ritesh.codeforcesportal.service;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
-public class RetrofitService {
+public class RetrofitClient {
 
     private static final String baseUrl = "https://codeforces.com/api/";
 

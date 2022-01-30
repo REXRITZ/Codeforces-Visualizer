@@ -3,20 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_user_stats.xml" value="0.2" />
-        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/user.xml" value="0.22" />
-        <entry key="..\:/Users/Me/Desktop/CodeforcesPortal/app/src/main/res/drawable/ciruclar_image.xml" value="0.821875" />
-        <entry key="..\:/Users/Me/Desktop/CodeforcesPortal/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Me/Desktop/CodeforcesPortal/app/src/main/res/layout/contest_list_item.xml" value="0.25" />
-        <entry key="..\:/Users/Me/Desktop/CodeforcesPortal/app/src/main/res/layout/user.xml" value="0.25" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_user_stats.xml" value="0.18" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
