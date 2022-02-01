@@ -13,5 +13,20 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/opensans_reg</item>
+    </style>
+
+<!--    If you add choice chips to a dialog (which has 24dp elevation), disable the -->
+<!--    chips' elevation overlays to ensure that there is sufficient color contrast when the chips are checked.-->
+    <style name="Widget.MyApp.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        ...
+        <item name="materialThemeOverlay">@style/ThemeOverlay.MyApp.Chip.Choice</item>
+    </style>
+    <!-- Disabling elevation overlays because when chip's default background/surface
+     composite are combined with elevation overlays in a highly elevated dialog,
+     the resulting color becomes too light and causes contrast
+     issues. -->
+    <style name="ThemeOverlay.MyApp.Chip.Choice" parent="">
+        <item name="elevationOverlayEnabled">false</item>
     </style>
 </resources>

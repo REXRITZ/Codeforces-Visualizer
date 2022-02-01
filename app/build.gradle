@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-//    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -49,7 +48,4 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.4.0"
     implementation "androidx.lifecycle:lifecycle-livedata:2.4.0"
 
-//    def nav_version = "2.4.0-alpha02"
-//    implementation "androidx.navigation:navigation-fragment:$nav_version"
-//    implementation "androidx.navigation:navigation-ui:$nav_version"
 }

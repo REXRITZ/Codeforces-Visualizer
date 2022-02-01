@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CodeforcesPortal">
         <activity
+            android:name=".ui.ContestActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.UserStatsActivity"
             android:exported="true" />
         <activity

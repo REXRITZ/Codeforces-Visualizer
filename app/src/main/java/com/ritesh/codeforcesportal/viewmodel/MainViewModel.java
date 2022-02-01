@@ -14,6 +14,7 @@ import com.ritesh.codeforcesportal.repository.ContestRepository;
 import com.ritesh.codeforcesportal.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -62,6 +63,7 @@ public class MainViewModel extends AndroidViewModel {
                 break;
             }
         }
+        Collections.reverse(upComing);
         upComingContests.setValue(upComing);
         contestProgressObservable.postValue(false);
     }
@@ -72,6 +74,10 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<Contest>> getUpComingContests() {
         return upComingContests;
+    }
+
+    public LiveData<List<Contest>> getContestList() {
+        return contestList;
     }
 
     public LiveData<List<User>> getUsersProfile() {

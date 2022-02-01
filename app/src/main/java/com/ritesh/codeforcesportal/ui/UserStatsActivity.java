@@ -1,11 +1,14 @@
 package com.ritesh.codeforcesportal.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -28,6 +31,9 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.renderer.Renderer;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.ritesh.codeforcesportal.R;
 import com.ritesh.codeforcesportal.model.Problem;
 import com.ritesh.codeforcesportal.model.Submission;
@@ -35,9 +41,12 @@ import com.ritesh.codeforcesportal.model.User;
 import com.ritesh.codeforcesportal.viewmodel.UserStatsViewModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.function.BiFunction;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -47,13 +56,17 @@ public class UserStatsActivity extends AppCompatActivity {
     private PieChart verdictChart;
     private BarChart ratingChart;
     private TextView userName, fullName, userRank, userRating;
+    private LinearProgressIndicator ratingProgress;
     private CircleImageView profilePic;
+    private ChipGroup tagsGroup;
+    public int[] PASTEL_COLORS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_stats);
 
+        PASTEL_COLORS = getResources().getIntArray(R.array.pastel_colors);
         initViews();
         displayUserData(getIntent().getParcelableExtra("userProfile"));
         setPieChart();
@@ -70,6 +83,8 @@ public class UserStatsActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        ratingProgress = findViewById(R.id.user_rating_progress);
+        tagsGroup = findViewById(R.id.tags_group);
         verdictChart = findViewById(R.id.piechart);
         ratingChart = findViewById(R.id.barChart);
         profilePic = findViewById(R.id.profile_photo);
@@ -101,12 +116,14 @@ public class UserStatsActivity extends AppCompatActivity {
             fullName.setVisibility(View.VISIBLE);
             fullName.setText(name);
         }
+        ratingProgress.setProgress(user.getRating());
     }
 
     private void createChartData(List<Submission> submissions) {
         HashMap<String,Float> verdictMap = new HashMap<>();
         HashMap<Integer,Float> ratingsMap = new HashMap<>();
-//        final int count = submissions.size();
+        HashSet<String> tagsSet = new HashSet<>();
+
         for (Submission submission : submissions) {
             String verdict = submission.getVerdict();
             if(verdictMap.containsKey(verdict)) {
@@ -121,6 +138,7 @@ public class UserStatsActivity extends AppCompatActivity {
             } else {
                 ratingsMap.put(problem.getRating(), 1f);
             }
+            tagsSet.addAll(problem.getTags());
         }
 
         ArrayList<PieEntry> verdictsList = new ArrayList<>();
@@ -133,6 +151,20 @@ public class UserStatsActivity extends AppCompatActivity {
         }
         loadPieChartData(verdictsList,ratingsList);
 
+        Random random = new Random();
+        for(String tag : tagsSet) {
+            createChip(tag,PASTEL_COLORS[random.nextInt(PASTEL_COLORS.length)]);
+        }
+
+    }
+
+    private void createChip(String tag,int color) {
+        Chip chip = (Chip) getLayoutInflater().inflate(R.layout.tag_chip,tagsGroup,false);
+        chip.setText(tag);
+        chip.setCheckable(false);
+        chip.setChipBackgroundColor(ColorStateList.valueOf(color));
+        tagsGroup.addView(chip);
+        
     }
 
     private void loadPieChartData(ArrayList<PieEntry> verdictsList, ArrayList<BarEntry> ratingsList) {
