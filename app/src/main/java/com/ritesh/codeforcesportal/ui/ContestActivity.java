@@ -52,6 +52,7 @@ public class ContestActivity extends AppCompatActivity {
     }
 
     private void loadData(ArrayList<Contest> contests) {
+        if(contests == null) return;
         for(Contest contest : contests) {
             String phase = contest.getPhase();
             switch (phase) {

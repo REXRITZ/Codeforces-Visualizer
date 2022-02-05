@@ -1,6 +1,8 @@
 package com.ritesh.codeforcesportal.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import com.ritesh.codeforcesportal.model.Contest;
 import com.ritesh.codeforcesportal.utils.Utils;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContestAdapter extends RecyclerView.Adapter<ContestAdapter.MyViewHolder>{
 
@@ -46,8 +50,10 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestAdapter.MyViewHo
         holder.contestName.setText(contest.getName());
         holder.contestType.setText(contest.getType());
         holder.contestLength.setText(Utils.formatTimeInSeconds(contest.getDurationSeconds()));
-        holder.contestRating.setText(contest.getName());
         holder.contestStartTime.setText(Utils.formatContestStartTime(contest.getStartTimeSeconds()));
+        holder.moreInfo.setOnClickListener(view -> {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://codeforces.com/contests/" + contest.getId())));
+        });
     }
 
     @Override
@@ -59,15 +65,16 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestAdapter.MyViewHo
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView contestName, contestRating, contestLength, contestStartTime;
+        TextView contestName, contestLength, contestStartTime;
         Chip contestType;
+        CircleImageView moreInfo;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             contestName = itemView.findViewById(R.id.contest_name);
-            contestRating = itemView.findViewById(R.id.contest_rating);
             contestLength = itemView.findViewById(R.id.contest_length);
             contestStartTime = itemView.findViewById(R.id.contest_start_time);
             contestType = itemView.findViewById(R.id.contest_type);
+            moreInfo = itemView.findViewById(R.id.more_info);
         }
     }
 }

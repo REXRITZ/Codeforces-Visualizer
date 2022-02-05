@@ -18,12 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.ritesh.codeforcesportal.R;
 import com.ritesh.codeforcesportal.adapter.ContestAdapter;
 import com.ritesh.codeforcesportal.model.Contest;
 import com.ritesh.codeforcesportal.model.User;
+import com.ritesh.codeforcesportal.utils.Utils;
 import com.ritesh.codeforcesportal.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
@@ -130,9 +132,10 @@ public class MainActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(user.getAvatar())
                 .into(profilePic);
-
+        profilePic.setBorderColor(getResources().getColor(Utils.getRankColor(user.getRating())));
         userName.setText(user.getHandle());
         userRank.setText(user.getRank());
+        userRank.setTextColor(getResources().getColor(Utils.getRankColor(user.getRating())));
         userRating.setText("Rating: " + user.getRating());
         StringBuilder name = new StringBuilder("");
         if(user.getFirstName() != null) {

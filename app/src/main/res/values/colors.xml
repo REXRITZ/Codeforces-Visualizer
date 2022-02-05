@@ -20,6 +20,14 @@
     <color name="j">#66E2D5D5</color>
     <color name="k">#66CC7351</color>
     <color name="l">#66FFEEBB</color>
+    
+    <color name="gray">#808080</color>
+    <color name="green">#008000</color>
+    <color name="cyan">#03A89E</color>
+    <color name="blue">#0000FF</color>
+    <color name="violet">#AA00AA</color>
+    <color name="orange">#FF8C00</color>
+    <color name="red">#FF0000</color>
 
     <array name="pastel_colors">
         <item>@color/a</item>

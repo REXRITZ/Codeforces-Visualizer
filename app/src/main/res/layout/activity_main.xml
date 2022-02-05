@@ -28,9 +28,9 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_more_user"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginEnd="@dimen/dimen_12"
             android:text="See more"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,9 +71,9 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_more_contest"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="@dimen/dimen_16"
             android:layout_marginEnd="@dimen/dimen_12"
             android:text="See more"
@@ -96,6 +96,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/upcoming_contest_list"
                 android:layout_width="match_parent"
+                android:clickable="false"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/dimen_6"
                 app:reverseLayout="true" />

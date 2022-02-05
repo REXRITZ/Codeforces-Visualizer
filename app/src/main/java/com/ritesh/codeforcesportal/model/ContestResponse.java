@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContestResponse {
+
     private String status;
     @Json(name = "result")
     private List<Contest> contests;

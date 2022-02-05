@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:text="Codeforces Round 720"
         android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:singleLine="true"
         app:layout_constraintEnd_toStartOf="@+id/contest_type"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,18 +25,11 @@
         android:id="@+id/contest_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CF"
+        android:text="ICPC"
+        app:chipBackgroundColor="@color/b"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/contest_rating"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Rated: Div 2"
-        app:layout_constraintEnd_toStartOf="@+id/contest_type"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contest_name" />
 
     <TextView
         android:id="@+id/contest_length"
@@ -42,16 +37,25 @@
         android:layout_height="wrap_content"
         android:text="Length: 2 hrs"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contest_rating" />
+        app:layout_constraintTop_toBottomOf="@+id/contest_name" />
 
     <TextView
         android:id="@+id/contest_start_time"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Start time: 22 Sunday 20:05:00 hrs"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/more_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contest_length" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/more_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_info_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/contest_type"
+        app:layout_constraintTop_toBottomOf="@id/contest_type"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

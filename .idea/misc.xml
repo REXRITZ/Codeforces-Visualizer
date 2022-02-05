@@ -3,14 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_contest.xml" value="0.22" />
-        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_user_stats.xml" value="0.23980222496909764" />
-        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/contest_list_item.xml" value="0.1539855072463768" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_contest.xml" value="0.25" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/activity_user_stats.xml" value="0.33" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/contest_list_item.xml" value="0.25" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/dd.xml" value="0.75" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/expand_view.xml" value="0.22" />
         <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/loading.xml" value="0.5" />
         <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/ss.xml" value="0.17889492753623187" />
         <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/tag_chip.xml" value="0.33" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/tags_detail_list.xml" value="0.22" />
         <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/user.xml" value="0.33" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/user_detail.xml" value="0.22" />
+        <entry key="..\:/Users/Me/Desktop/Assignments/Codeforces-Stats/app/src/main/res/layout/user_info_list_item.xml" value="0.21" />
       </map>
     </option>
   </component>

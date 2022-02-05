@@ -54,7 +54,10 @@ public class MainViewModel extends AndroidViewModel {
     private void loadContestData() {
         List<Contest>contests = contestList.getValue();
         List<Contest>upComing = new ArrayList<>();
-        if(contests == null) return;
+        if(contests == null) {
+            contestProgressObservable.postValue(false);
+            return;
+        }
         for(int index = 0; index < contests.size(); ++index) {
             Contest contest = contests.get(index);
             if(contest.getPhase().equals("BEFORE")) {

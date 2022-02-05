@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dimen_12"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dimen_12"
+    android:gravity="center_horizontal"
     tools:context=".ui.ContestActivity">
+
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/contest_filter"
@@ -43,14 +46,25 @@
     </com.google.android.material.chip.ChipGroup>
 
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/userCardView"
         android:layout_marginTop="@dimen/dimen_12"
-        android:id="@+id/contest_list"
+        android:layout_marginHorizontal="@dimen/dimen_12"
+        android:layout_marginBottom="@dimen/dimen_12"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:reverseLayout="true"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/dimen_12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contest_filter"/>
+        app:layout_constraintTop_toBottomOf="@id/contest_filter">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contest_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:reverseLayout="true"/>
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+</LinearLayout>

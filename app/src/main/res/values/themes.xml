@@ -2,8 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.CodeforcesPortal" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+<!--        colorPrimary = purple500 colorprimaryvariant purple 700-->
+        <item name="colorPrimary">#0083cc</item>
+        <item name="colorPrimaryVariant">#0062ab</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -28,5 +29,6 @@
      issues. -->
     <style name="ThemeOverlay.MyApp.Chip.Choice" parent="">
         <item name="elevationOverlayEnabled">false</item>
+
     </style>
 </resources>
