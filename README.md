@@ -1,5 +1,5 @@
 # Codeforces-Stats
-An app to see information about upcoming codeforces contests and help visualizing statistics of a user to improve his/her performance.
+An app to see information about upcoming [codeforces](https://codeforces.com/) contests and help visualizing statistics of a user to improve his/her performance.
 
 ## Current Features include:
 - View information about upcoming contests.
