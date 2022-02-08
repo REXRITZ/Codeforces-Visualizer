@@ -3,16 +3,15 @@ package com.ritesh.codeforcesportal.model;
 import com.ritesh.codeforcesportal.model.Contest;
 import com.squareup.moshi.Json;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContestResponse {
 
-    private String status;
+    private Status status;
     @Json(name = "result")
     private List<Contest> contests;
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 

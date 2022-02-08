@@ -23,8 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ContestAdapter extends RecyclerView.Adapter<ContestAdapter.MyViewHolder>{
 
     private List<Contest> contestsList;
-    private boolean isLimit;
-    private final int LIMIT = 3;
+    private final boolean isLimit;
     private final Context context;
 
     public ContestAdapter(Context context, boolean isLimit) {
@@ -59,15 +58,18 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestAdapter.MyViewHo
     @Override
     public int getItemCount() {
         if(contestsList == null) return 0;
+        int LIMIT = 3;
         if(isLimit)
             return Math.min(LIMIT,contestsList.size());
         return contestsList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView contestName, contestLength, contestStartTime;
-        Chip contestType;
-        CircleImageView moreInfo;
+        final TextView contestName;
+        final TextView contestLength;
+        final TextView contestStartTime;
+        final Chip contestType;
+        final CircleImageView moreInfo;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             contestName = itemView.findViewById(R.id.contest_name);

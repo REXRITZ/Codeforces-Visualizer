@@ -1,7 +1,5 @@
 package com.ritesh.codeforcesportal.utils;
 
-import junit.framework.TestCase;
-
 import org.junit.Assert;
 import org.junit.Test;
 

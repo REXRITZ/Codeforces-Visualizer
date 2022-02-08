@@ -1,7 +1,6 @@
 package com.ritesh.codeforcesportal.adapter;
 
 import android.content.Context;
-import android.nfc.Tag;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.chip.Chip;
 import com.ritesh.codeforcesportal.R;
-import com.ritesh.codeforcesportal.model.Contest;
 import com.ritesh.codeforcesportal.model.Tags;
 
 import java.util.List;
@@ -22,10 +19,10 @@ import java.util.Random;
 public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.MyViewHolder>{
 
     private List<Tags> tagsList;
-    private Context context;
+    private final Context context;
     private final int[] PASTEL_COLORS;
     private final int colorsLen;
-    private Random random;
+    private final Random random;
     public TagsAdapter(Context context, int[] PASTEL_COLORS) {
         this.context = context;
         this.PASTEL_COLORS = PASTEL_COLORS;
@@ -63,8 +60,11 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.MyViewHolder>{
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tagName, tagPercent, solvedCount, triedCount;
-        RelativeLayout tag_bg;
+        final TextView tagName;
+        final TextView tagPercent;
+        final TextView solvedCount;
+        final TextView triedCount;
+        final RelativeLayout tag_bg;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tagName = itemView.findViewById(R.id.tv_tag);

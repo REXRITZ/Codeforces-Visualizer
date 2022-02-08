@@ -2,10 +2,10 @@ package com.ritesh.codeforcesportal.model;
 
 public class Tags {
 
-    private String name;
-    private String percent;
-    private int solvedCount;
-    private int triedCount;
+    private final String name;
+    private final String percent;
+    private final int solvedCount;
+    private final int triedCount;
 
     public Tags(String name, String percent, int solvedCount, int triedCount) {
         this.name = name;

@@ -8,18 +8,15 @@ import com.ritesh.codeforcesportal.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
 
 public class Utils {
-
+    public static final Integer[] ratingXaxis = {500,1000,1500,2000,2500,3000,3500,4000};
     @NonNull
     @SuppressLint("DefaultLocale")
     public static String formatTimeInSeconds(Integer seconds) {
         Integer hour = seconds / 3600;
         Integer min = (seconds % 3600) / 60;
-//        String hours = String.format("%02d",seconds/3600) + ":";
-//        String minutes = String.format("%02d",(seconds/3600)%60);
         return String.format("Length: %02d hr %02d min",hour, min);
     }
 
@@ -34,7 +31,7 @@ public class Utils {
     }
 
     public static int getRankColor(int rating) {
-        int color = R.color.black;
+        int color;
         if(rating >= 0 && rating <= 1199)
             color = R.color.gray;
         else if (rating >= 1200 && rating <= 1399)

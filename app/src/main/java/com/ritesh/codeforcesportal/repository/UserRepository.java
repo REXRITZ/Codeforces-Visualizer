@@ -3,12 +3,10 @@ package com.ritesh.codeforcesportal.repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.ritesh.codeforcesportal.model.User;
+import com.ritesh.codeforcesportal.model.Status;
 import com.ritesh.codeforcesportal.model.UserResponse;
 import com.ritesh.codeforcesportal.service.ApiInterface;
 import com.ritesh.codeforcesportal.service.RetrofitClient;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,7 +14,7 @@ import retrofit2.Response;
 
 public class UserRepository {
     private static ApiInterface apiInterface;
-    private MutableLiveData<List<User>> usersList;
+    private final MutableLiveData<UserResponse> usersList;
 
     public UserRepository() {
         apiInterface = RetrofitClient.getApiInterface();
@@ -29,8 +27,8 @@ public class UserRepository {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (!response.isSuccessful() || response.body() == null) return;
                 UserResponse userResponse = response.body();
-                if(userResponse.getStatus().equals("OK")) {
-                    usersList.postValue(userResponse.getUserList());
+                if(userResponse.getStatus() == Status.OK) {
+                    usersList.postValue(userResponse);
                 }
             }
 
@@ -41,7 +39,7 @@ public class UserRepository {
         });
     }
 
-    public LiveData<List<User>> getUsersProfile() {
+    public LiveData<UserResponse> getUsersProfile() {
         return usersList;
     }
 }

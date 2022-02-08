@@ -3,17 +3,15 @@ package com.ritesh.codeforcesportal.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.Nullable;
-
 public class Contest implements Parcelable {
-    private int id;
-    private String name;
-    private String type;
-    private String phase;
-    private boolean frozen;
-    private int durationSeconds;
-    private int startTimeSeconds;
-    private int relativeTimeSeconds;
+    private final int id;
+    private final String name;
+    private final String type;
+    private final String phase;
+    private final boolean frozen;
+    private final int durationSeconds;
+    private final int startTimeSeconds;
+    private final int relativeTimeSeconds;
 
     protected Contest(Parcel in) {
         id = in.readInt();

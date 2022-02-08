@@ -1,7 +1,5 @@
 package com.ritesh.codeforcesportal.model;
 
-import com.squareup.moshi.Json;
-
 public class Submission {
 
 	private int id;
@@ -16,7 +14,7 @@ public class Submission {
 	private int passedTestCount;
 	private int memoryConsumedBytes;
 	private int timeConsumedMillis;
-	private int points;
+	private Float points;
 
 	public int getContestId(){
 		return contestId;
@@ -66,7 +64,7 @@ public class Submission {
 		return id;
 	}
 
-	public int getPoints() {
+	public Float getPoints() {
 		return points;
 	}
 

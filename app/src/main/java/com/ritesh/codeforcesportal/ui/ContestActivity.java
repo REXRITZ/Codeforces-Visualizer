@@ -5,8 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.view.View;
 
 import com.google.android.material.chip.ChipGroup;
 import com.ritesh.codeforcesportal.R;

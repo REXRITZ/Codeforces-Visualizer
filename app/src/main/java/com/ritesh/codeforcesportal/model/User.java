@@ -4,25 +4,25 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
-    private String handle;
-    private String email;
-    private String vkId;
-    private String openId;
-    private String firstName;
-    private String lastName;
-    private String country;
-    private String city;
-    private String organization;
-    private int contribution;
-    private String rank;
-    private int rating;
-    private String maxRank;
-    private int maxRating;
-    private int lastOnlineTimeSeconds;
-    private int registrationTimeSeconds;
-    private int friendOfCount;
-    private String avatar;
-    private String titlePhoto;
+    private final String handle;
+    private final String email;
+    private final String vkId;
+    private final String openId;
+    private final String firstName;
+    private final String lastName;
+    private final String country;
+    private final String city;
+    private final String organization;
+    private final int contribution;
+    private final String rank;
+    private final int rating;
+    private final String maxRank;
+    private final int maxRating;
+    private final int lastOnlineTimeSeconds;
+    private final int registrationTimeSeconds;
+    private final int friendOfCount;
+    private final String avatar;
+    private final String titlePhoto;
 
 
     protected User(Parcel in) {

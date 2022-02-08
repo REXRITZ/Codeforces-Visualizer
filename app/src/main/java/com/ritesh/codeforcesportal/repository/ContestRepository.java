@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.ritesh.codeforcesportal.model.Contest;
 import com.ritesh.codeforcesportal.model.ContestResponse;
+import com.ritesh.codeforcesportal.model.Status;
 import com.ritesh.codeforcesportal.service.ApiInterface;
 import com.ritesh.codeforcesportal.service.RetrofitClient;
 
@@ -29,7 +30,7 @@ public class ContestRepository {
             public void onResponse(Call<ContestResponse> call, Response<ContestResponse> response) {
                 if (!response.isSuccessful() || response.body() == null) return;
                 ContestResponse contestResponse = response.body();
-                if(contestResponse.getStatus().equals("OK")) {
+                if(contestResponse.getStatus() == Status.OK) {
                     contestList.postValue(contestResponse.getContests());
                 }
             }

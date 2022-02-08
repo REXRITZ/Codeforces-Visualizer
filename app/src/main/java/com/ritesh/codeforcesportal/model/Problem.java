@@ -1,7 +1,6 @@
 package com.ritesh.codeforcesportal.model;
 
 import java.util.List;
-import com.squareup.moshi.Json;
 
 public class Problem{
 

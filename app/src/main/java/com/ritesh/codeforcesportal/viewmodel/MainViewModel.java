@@ -1,54 +1,65 @@
 package com.ritesh.codeforcesportal.viewmodel;
 
 import android.app.Application;
-import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.ritesh.codeforcesportal.model.Contest;
-import com.ritesh.codeforcesportal.model.User;
+import com.ritesh.codeforcesportal.model.UserResponse;
 import com.ritesh.codeforcesportal.repository.ContestRepository;
 import com.ritesh.codeforcesportal.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class MainViewModel extends AndroidViewModel {
 
     private final ContestRepository contestRepository;
     private final UserRepository userRepository;
     private LiveData<List<Contest>> contestList;
-    private MutableLiveData<List<User>> user = new MutableLiveData<>();
+    private final MutableLiveData<UserResponse> user = new MutableLiveData<>();
     private final MutableLiveData<List<Contest>> upComingContests = new MutableLiveData<>();
     private final MutableLiveData<Boolean> contestProgressObservable = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isValid = new MutableLiveData<>();
     public MainViewModel(@NonNull Application application) {
         super(application);
         contestRepository = new ContestRepository();
         userRepository = new UserRepository();
+        isValid.setValue(true);
     }
 
     public void init() {
         contestProgressObservable.postValue(true);
         contestRepository.loadContestData();
-        new Handler().postDelayed(new Runnable() {
+        contestRepository.getContestDetails().observeForever(new Observer<List<Contest>>() {
             @Override
-            public void run() {
-                contestList = contestRepository.getContestDetails();
-                loadContestData();
+            public void onChanged(List<Contest> list) {
+               if(list != null) {
+                   MutableLiveData<List<Contest>> m = new MutableLiveData<>();
+                   m.setValue(list);
+                   contestList = m;
+                   loadContestData();
+               } else {
+                   contestProgressObservable.postValue(false);
+               }
             }
-        },2000);
-        userRepository.fetchUserProfile("REXRITZ");
-        new Handler().postDelayed(new Runnable() {
+        });
+    }
+
+    public void initUser(String handle) {
+        userRepository.fetchUserProfile(handle);
+        userRepository.getUsersProfile().observeForever(new Observer<UserResponse>() {
             @Override
-            public void run() {
-                user.postValue(userRepository.getUsersProfile().getValue());
+            public void onChanged(UserResponse userResponse) {
+                user.postValue((userResponse));
+                isValid.postValue(userResponse != null);
             }
-        },2000);
+        });
     }
 
     private void loadContestData() {
@@ -83,8 +94,12 @@ public class MainViewModel extends AndroidViewModel {
         return contestList;
     }
 
-    public LiveData<List<User>> getUsersProfile() {
+    public LiveData<UserResponse> getUsersProfile() {
         return user;
+    }
+
+    public MutableLiveData<Boolean> isValidUser() {
+        return isValid;
     }
 
 }

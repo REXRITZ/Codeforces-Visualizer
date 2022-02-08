@@ -1,7 +1,6 @@
 package com.ritesh.codeforcesportal.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -9,11 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.LayoutTransition;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Pair;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -33,15 +30,10 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IValueFormatter;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.renderer.Renderer;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.ritesh.codeforcesportal.R;
 import com.ritesh.codeforcesportal.adapter.TagsAdapter;
 import com.ritesh.codeforcesportal.adapter.UserAdapter;
@@ -54,13 +46,9 @@ import com.ritesh.codeforcesportal.viewmodel.UserStatsViewModel;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.function.BiFunction;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -82,16 +70,15 @@ public class UserStatsActivity extends AppCompatActivity {
 
         PASTEL_COLORS = getResources().getIntArray(R.array.pastel_colors);
         initViews();
-        displayUserData(getIntent().getParcelableExtra("userProfile"));
+        User user = getIntent().getParcelableExtra("userProfile");
+        displayUserData(user);
         setPieChart();
         UserStatsViewModel viewModel = new ViewModelProvider(this).get(UserStatsViewModel.class);
-        viewModel.init();
+        viewModel.init(user.getHandle());
         viewModel.getUserSubmissions().observe(this, new Observer<List<Submission>>() {
             @Override
             public void onChanged(List<Submission> submissions) {
-                if(submissions != null) {
-                    createChartData(submissions);
-                }
+                createChartData(submissions);
             }
         });
     }
@@ -122,7 +109,7 @@ public class UserStatsActivity extends AppCompatActivity {
         ViewGroup root = findViewById(R.id.root);
         root.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
 
-        boolean clicked[] = new boolean[4];
+        boolean[] clicked = new boolean[4];
         for(int i = 0; i < 4; ++i) clicked[i] = false;
         MaterialButton userExpand, pieChartExpand, barChartExpand, tagsExpand;
         userExpand = findViewById(R.id.user_expand);
@@ -208,6 +195,9 @@ public class UserStatsActivity extends AppCompatActivity {
     }
 
     private void createChartData(List<Submission> submissions) {
+        Toast.makeText(this, "FFF", Toast.LENGTH_SHORT).show();
+        if(submissions == null) return;
+        Toast.makeText(this, "UUU", Toast.LENGTH_SHORT).show();
         HashMap<String,Float> verdictMap = new HashMap<>();
         HashMap<Integer,Float> ratingsMap = new HashMap<>();
         //tag -> {correct,total}
@@ -222,10 +212,12 @@ public class UserStatsActivity extends AppCompatActivity {
             }
             Problem problem = submission.getProblem();
             //WARNING: assume for now that rating is valid
-            if(ratingsMap.containsKey(problem.getRating())) {
-                ratingsMap.put(problem.getRating(),ratingsMap.get(problem.getRating())+1f);
-            } else {
-                ratingsMap.put(problem.getRating(), 1f);
+            if(verdict.equals("OK")) {
+                if(ratingsMap.containsKey(problem.getRating())) {
+                    ratingsMap.put(problem.getRating(),ratingsMap.get(problem.getRating())+1f);
+                } else {
+                    ratingsMap.put(problem.getRating(), 1f);
+                }
             }
             for(String tag : problem.getTags()) {
                 double[] val;
@@ -285,9 +277,23 @@ public class UserStatsActivity extends AppCompatActivity {
         verdictDataSet.setColors(colors);
         PieData verdictData = new PieData(verdictDataSet);
         verdictData.setDrawValues(true);
-//        verdictData.setValueFormatter(new PercentFormatter());
         verdictData.setValueTextSize(12f);
         verdictData.setValueTextColor(Color.BLACK);
+        verdictData.setValueFormatter(new IValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int ind, ViewPortHandler viewPortHandler) {
+                if(verdictsList != null && verdictsList.size() > 0 && value / verdictsList.size() < 0.15) {
+                    PieEntry entry1 = (PieEntry) entry;
+                    entry1.setLabel("");
+                    return "";
+                }
+                return String.format("%.2f",value);
+            }
+        });
+        //pie chart update
+        verdictChart.setData(verdictData);
+        verdictChart.invalidate();
+        verdictChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
 
         //Bar chart load
         BarDataSet set = new BarDataSet(ratingsList,"Ratings");
@@ -295,18 +301,19 @@ public class UserStatsActivity extends AppCompatActivity {
         ArrayList<IBarDataSet> dataSets = new ArrayList<>();
         dataSets.add(set);
         BarData data = new BarData(set);
-//        data.setValueTextSize(12f);
-        data.setBarWidth(60f);
+        data.setBarWidth(50f);
         //Bar chart update
-//        TODO: just look at bar chart and you will know
+        ratingChart.setFitBars(true);
         ratingChart.setData(data);
-        ratingChart.invalidate();
+        ratingChart.setPinchZoom(false);
+        ratingChart.setDragEnabled(true);
+        ratingChart.getAxisRight().setEnabled(false);
+        ratingChart.getXAxis().setDrawGridLines(false);
+        ratingChart.getXAxis().setAxisMinimum(100);
+        ratingChart.getXAxis().setGranularity(400f);
         ratingChart.animateY(1400);
-
-        //pie chart update
-        verdictChart.setData(verdictData);
-        verdictChart.invalidate();
-        verdictChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+        ratingChart.setVisibleXRangeMaximum(1500);
+        ratingChart.invalidate();
     }
 
     private void setPieChart() {
@@ -316,9 +323,10 @@ public class UserStatsActivity extends AppCompatActivity {
         verdictChart.setEntryLabelColor(Color.BLACK);
         verdictChart.getDescription().setEnabled(false);
         Legend l = verdictChart.getLegend();
+//        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
 
         ratingChart.setDrawBarShadow(false);
 //        ratingChart.setDrawValueAboveBar(false);

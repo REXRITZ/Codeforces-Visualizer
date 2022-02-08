@@ -12,7 +12,6 @@
         android:layout_toStartOf="@id/profile_photo"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="rexritz"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="20sp" />
@@ -25,8 +24,7 @@
         android:layout_marginTop="@dimen/dimen_6"
         android:layout_toStartOf="@id/profile_photo"
         android:layout_alignParentStart="true"
-        android:textSize="17sp"
-        android:text="Ritesh Bhadane"/>
+        android:textSize="17sp"/>
 
     <TextView
         android:id="@+id/user_rank"
@@ -36,14 +34,15 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/dimen_6"
         android:textSize="17sp"
-        android:layout_below="@id/full_name"
-        android:text="Candidate Master"/>
+        android:layout_below="@id/full_name"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_photo"
         android:layout_width="70dp"
         android:layout_height="70dp"
         app:civ_border_width="2dp"
+        app:civ_border_color="#00FFFFFF"
+        android:src="@drawable/ic_placeholder_24"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"/>
 
@@ -51,7 +50,6 @@
         android:id="@+id/user_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rating: 2456"
         android:textSize="17sp"
         android:layout_below="@id/user_rank"
         android:layout_marginTop="@dimen/dimen_6"

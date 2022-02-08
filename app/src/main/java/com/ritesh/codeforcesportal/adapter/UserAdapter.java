@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder>{
 
     private ArrayList<Pair<String,String>> userList;
-    private Context context;
+    private final Context context;
 
     public UserAdapter(Context context) {
         this.context = context;
@@ -50,7 +50,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder>{
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView name , value;
+        final TextView name;
+        final TextView value;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.user_key);

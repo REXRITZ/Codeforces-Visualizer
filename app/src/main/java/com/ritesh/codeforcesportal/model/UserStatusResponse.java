@@ -6,11 +6,11 @@ import java.util.List;
 
 public class UserStatusResponse {
 
-    private String status;
+    private Status status;
     @Json(name = "result")
     private List<Submission> userSubmissions;
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
