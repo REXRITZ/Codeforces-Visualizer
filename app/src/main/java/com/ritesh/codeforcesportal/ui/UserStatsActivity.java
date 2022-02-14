@@ -74,7 +74,7 @@ public class UserStatsActivity extends AppCompatActivity {
         displayUserData(user);
         setPieChart();
         UserStatsViewModel viewModel = new ViewModelProvider(this).get(UserStatsViewModel.class);
-        viewModel.init(user.getHandle());
+        viewModel.init(user != null?user.getHandle():"");
         viewModel.getUserSubmissions().observe(this, new Observer<List<Submission>>() {
             @Override
             public void onChanged(List<Submission> submissions) {
