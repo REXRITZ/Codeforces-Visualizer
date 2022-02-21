@@ -36,6 +36,7 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.android.material.button.MaterialButton;
 import com.ritesh.codeforcesportal.R;
 import com.ritesh.codeforcesportal.adapter.TagsAdapter;
+import com.ritesh.codeforcesportal.adapter.UnsolvedAdapter;
 import com.ritesh.codeforcesportal.adapter.UserAdapter;
 import com.ritesh.codeforcesportal.model.Problem;
 import com.ritesh.codeforcesportal.model.Submission;
@@ -47,6 +48,7 @@ import com.ritesh.codeforcesportal.viewmodel.UserStatsViewModel;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -57,9 +59,10 @@ public class UserStatsActivity extends AppCompatActivity {
     private PieChart verdictChart;
     private BarChart ratingChart;
     public int[] PASTEL_COLORS;
-    private RecyclerView tagsRecyclerView, userRecyclerView;
+    private RecyclerView tagsRecyclerView, userRecyclerView, unsolvedRecyclerView;
     private TagsAdapter tagsAdapter;
     private UserAdapter userAdapter;
+    private UnsolvedAdapter unsolvedAdapter;
     private TextView userName,userRank;
     private CircleImageView imageView;
 
@@ -89,6 +92,15 @@ public class UserStatsActivity extends AppCompatActivity {
         imageView = findViewById(R.id.profile_photo);
         verdictChart = findViewById(R.id.piechart);
         ratingChart = findViewById(R.id.barChart);
+        unsolvedRecyclerView = findViewById(R.id.unsolved_prob_recyclerview);
+        unsolvedRecyclerView.setNestedScrollingEnabled(false);
+        unsolvedRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        unsolvedRecyclerView.setLayoutManager(layoutManager);
+        unsolvedRecyclerView.addItemDecoration(new DividerItemDecoration(unsolvedRecyclerView.getContext(),
+                layoutManager.getOrientation()));
+        unsolvedAdapter = new UnsolvedAdapter(this);
+        unsolvedRecyclerView.setAdapter(unsolvedAdapter);
         tagsRecyclerView = findViewById(R.id.tags_recyclerview);
         tagsRecyclerView.setNestedScrollingEnabled(false);
         tagsRecyclerView.setHasFixedSize(true);
@@ -98,24 +110,24 @@ public class UserStatsActivity extends AppCompatActivity {
         userRecyclerView = findViewById(R.id.user_info_recyclerview);
         userRecyclerView.setHasFixedSize(true);
         userRecyclerView.setNestedScrollingEnabled(false);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        userRecyclerView.setLayoutManager(layoutManager);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(userRecyclerView.getContext(),
-                layoutManager.getOrientation());
-        userRecyclerView.addItemDecoration(dividerItemDecoration);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(this);
+        userRecyclerView.setLayoutManager(layoutManager1);
+        userRecyclerView.addItemDecoration(new DividerItemDecoration(userRecyclerView.getContext(),
+                layoutManager1.getOrientation()));
         userAdapter = new UserAdapter(this);
         userRecyclerView.setAdapter(userAdapter);
 
         ViewGroup root = findViewById(R.id.root);
         root.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
 
-        boolean[] clicked = new boolean[4];
-        for(int i = 0; i < 4; ++i) clicked[i] = false;
-        MaterialButton userExpand, pieChartExpand, barChartExpand, tagsExpand;
+        boolean[] clicked = new boolean[5];
+        for(int i = 0; i < 5; ++i) clicked[i] = false;
+        MaterialButton userExpand, pieChartExpand, barChartExpand, tagsExpand, unsolvedExpand;
         userExpand = findViewById(R.id.user_expand);
         pieChartExpand = findViewById(R.id.pie_expand);
         barChartExpand = findViewById(R.id.bar_expand);
         tagsExpand = findViewById(R.id.tags_expand);
+        unsolvedExpand = findViewById(R.id.problems_expand);
         userExpand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,6 +180,19 @@ public class UserStatsActivity extends AppCompatActivity {
                 clicked[3] = !clicked[3];
             }
         });
+        unsolvedExpand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!clicked[4]) {
+                    unsolvedRecyclerView.setVisibility(View.VISIBLE);
+                    unsolvedExpand.setCompoundDrawablesWithIntrinsicBounds(null,null,getResources().getDrawable(R.drawable.ic_baseline_keyboard_arrow_down_24),null);
+                } else {
+                    unsolvedRecyclerView.setVisibility(View.GONE);
+                    unsolvedExpand.setCompoundDrawablesWithIntrinsicBounds(null,null,getResources().getDrawable(R.drawable.ic_baseline_keyboard_arrow_right_24),null);
+                }
+                clicked[4] = !clicked[4];
+            }
+        });
     }
 
     public void displayUserData(User user) {
@@ -202,7 +227,7 @@ public class UserStatsActivity extends AppCompatActivity {
         HashMap<Integer,Float> ratingsMap = new HashMap<>();
         //tag -> {correct,total}
         Map<String, double[]> tagsSet = new HashMap<>();
-
+        HashSet<String> unsolvedSet = new HashSet<>();
         for (Submission submission : submissions) {
             String verdict = submission.getVerdict();
             if(verdictMap.containsKey(verdict)) {
@@ -218,6 +243,9 @@ public class UserStatsActivity extends AppCompatActivity {
                 } else {
                     ratingsMap.put(problem.getRating(), 1f);
                 }
+            } else {
+                String problemName = problem.getContestId() + "/" + problem.getIndex();
+                unsolvedSet.add(problemName);
             }
             for(String tag : problem.getTags()) {
                 double[] val;
@@ -252,6 +280,9 @@ public class UserStatsActivity extends AppCompatActivity {
             addTagToList(entry,tagsList, decimalFormat);
         }
         tagsAdapter.updateList(tagsList);
+        List<String> unsolvedProblems = new ArrayList<>();
+        unsolvedProblems.addAll(unsolvedSet);
+        unsolvedAdapter.updateList(unsolvedProblems);
 
     }
 

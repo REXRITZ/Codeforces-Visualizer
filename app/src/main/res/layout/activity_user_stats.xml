@@ -139,6 +139,26 @@
             app:layout_constraintTop_toBottomOf="@id/tags_expand"
             app:reverseLayout="true"/>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/problems_expand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unsolved problems"
+            android:layout_marginVertical="@dimen/dimen_12"
+            android:textAlignment="viewStart"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            app:layout_constraintTop_toBottomOf="@id/tags_recyclerview"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/unsolved_prob_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/problems_expand"
+            app:layout_constraintStart_toStartOf="parent"
+            app:reverseLayout="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
