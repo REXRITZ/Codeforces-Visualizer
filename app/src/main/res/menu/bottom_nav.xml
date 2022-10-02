@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/contestFragment"
+        android:icon="@drawable/ic_outline_home_24"
+        android:enabled="true"
+        android:title="@string/contests"/>
+
+    <item
+        android:id="@+id/userFragment"
+        android:icon="@drawable/ic_outline_account_circle_24"
+        android:enabled="true"
+        android:title="@string/user"/>
+
+    <item
+        android:id="@+id/statsFragment"
+        android:icon="@drawable/ic_outline_bar_chart_24"
+        android:enabled="true"
+        android:title="@string/stats"/>
+</menu>

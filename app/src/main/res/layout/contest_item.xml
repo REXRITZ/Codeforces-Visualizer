@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    app:strokeWidth="0dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingHorizontal="@dimen/dimen_16"
+        android:paddingVertical="@dimen/dimen_8"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/contest_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/contest_start_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contest_name"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:text="asdasda"/>
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/contest_status"
+            app:layout_constraintBottom_toBottomOf="@id/contest_status"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:text="status : "/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/contest_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/textview"
+            app:layout_constraintTop_toBottomOf="@id/contest_start_time"
+            android:paddingHorizontal="@dimen/dimen_4"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:background="?attr/colorSecondaryContainer"
+            android:text="asd" />
+
+        <LinearLayout
+            android:id="@+id/more_options"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/dimen_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contest_status"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reminder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:text="Add to calendar"
+                android:layout_weight="1"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

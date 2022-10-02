@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Codeforces Stats</string>
+    <string name="app_name">CodeforcesVisualizer</string>
+    <string name="contests">Contests</string>
+    <string name="home">Home</string>
+    <string name="stats">Stats</string>
+    <string name="statistics">Statistics</string>
+    <string name="user">User</string>
 </resources>
